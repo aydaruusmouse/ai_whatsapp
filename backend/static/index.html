@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Telesom AI — Caawiye Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">T</span>
+        <div>
+          <h1>Telesom AI</h1>
+          <p class="tagline">Caawiye macaamiisha — ugu horreyn Af-Soomaali, sidoo kale Ingiriis</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="chunkBadge" class="badge" title="Qaybaha xogta ee kaydka">Xog: 0 qaybood</span>
+        <button type="button" id="btnClear" class="btn ghost" title="Nadiifi chat-ka kaliya — dukumeentiyada waa la hayaa">Nadiifi chat</button>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Ku dar xogta (waqtiga)</h2>
+        <p class="hint">Fayl ama link ku dar — xogtu waa la kaydiyaa oo dhammaan su'aalaha laga jawaabaa.</p>
+
+        <label class="upload">
+          <input type="file" id="fileInput" accept=".pdf,.txt,.md,.csv,.doc,.docx" hidden />
+          <span class="upload-inner">
+            <strong>Soo rar fayl</strong>
+            <small>PDF, TXT, MD, CSV, DOC, DOCX</small>
+          </span>
+        </label>
+
+        <div class="url-row">
+          <input type="url" id="urlInput" placeholder="https://..." autocomplete="off" />
+          <button type="button" id="btnUrl" class="btn primary">Soo geli URL</button>
+        </div>
+        <p id="ingestStatus" class="status" role="status"></p>
+      </section>
+
+      <section class="panel">
+        <h2>Lambarka (WhatsApp)</h2>
+        <p class="hint">Web tijaabo: geli lambarka macmiilka. WhatsApp waxaa la siiyaa otomaatig.</p>
+        <input type="tel" id="phoneInput" placeholder="+25263XXXXXXX" autocomplete="tel" />
+      </section>
+
+      <!-- <section class="panel note">
+        <h3>Talo</h3>
+        <ul>
+          <li>Ku dar dukumeentiga siyaasadda ama FAQ-ga adeegga.</li>
+          <li>Su’aalaha ku qor Af-Soomaali (ugu fiican) ama Ingiriis.</li>
+          <li>API: faylka <code>backend/.env</code> — Together (<code>api.together.xyz</code>) ama OpenRouter.</li>
+        </ul>
+      </section> -->
+    </aside>
+
+    <main class="chat">
+      <div id="messages" class="messages" aria-live="polite"></div>
+      <form id="chatForm" class="composer">
+        <textarea id="messageInput" rows="2" placeholder="Qor su'aashaada halkan..." required></textarea>
+        <button type="submit" class="btn primary send" id="btnSend">Dir</button>
+      </form>
+    </main>
+  </div>
+  <script src="/assets/app.js"></script>
+</body>
+</html>
