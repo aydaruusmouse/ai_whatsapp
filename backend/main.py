@@ -742,15 +742,8 @@ def chat(body: ChatBody):
             "greeting": True,
         }
 
-    n_chunks = total_chunk_count()
-
-    # Always search uploaded documents & links first when knowledge exists.
-    if n_chunks > 0:
-        retrieval = retrieve_context_result(sid, last_user)
-        if retrieval.best_score > 0 and retrieval.text.strip():
-            return _reply_from_knowledge(sid, last_user, body, retrieval)
-
-    # No matching knowledge — fall through to live Telesom APIs (exchange, VAS, etc.).
+    # API intents (exchange, block wrong transaction, fiber, VAS menu)
+    # should run before document knowledge replies.
     vas_reply = handle_vas_flow(
         sid,
         last_user,
@@ -765,6 +758,12 @@ def chat(body: ChatBody):
             "mock_llm": False,
             "vas_flow": True,
         }
+
+    n_chunks = total_chunk_count()
+    if n_chunks > 0:
+        retrieval = retrieve_context_result(sid, last_user)
+        if retrieval.best_score > 0 and retrieval.text.strip():
+            return _reply_from_knowledge(sid, last_user, body, retrieval)
 
     return _handoff_response(sid, last_user, first_time=True)
 
